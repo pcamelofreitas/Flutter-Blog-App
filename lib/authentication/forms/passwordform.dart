@@ -1,4 +1,5 @@
 import 'package:blog_app_2/models/logo.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class PasswordForm extends StatefulWidget {
@@ -112,6 +113,33 @@ class _PasswordFormState extends State<PasswordForm> {
                 },
               ),
             ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              TextButton(
+                  onPressed: () {
+                    FirebaseAuth.instance
+                        .sendPasswordResetEmail(email: _emailController.text);
+                    showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        title: const Text(
+                            'Enviamos um email para redefinir sua senha. Se não encontrar na caixa de entrada verifique no spam.'),
+                        content: ElevatedButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text("ok"),
+                        ),
+                      ),
+                    );
+                  },
+                  child: const Text(
+                    'Esqueceu sua senha?',
+                    style: TextStyle(color: Colors.black),
+                  )),
+            ],
           ),
           const SizedBox(
             height: 50,

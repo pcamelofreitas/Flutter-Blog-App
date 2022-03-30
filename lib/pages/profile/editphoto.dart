@@ -48,7 +48,8 @@ class _EditPhotoPageState extends State<EditPhotoPage> {
 
       firebase_storage.TaskSnapshot taskSnapshot = await uploadTask;
 
-      taskSnapshot.ref.getDownloadURL().then((value) => _photoURL = value);
+      taskSnapshot.ref.getDownloadURL().then(
+          (value) => FirebaseAuth.instance.currentUser!.updatePhotoURL(value));
     }
   }
 
@@ -141,10 +142,6 @@ class _EditPhotoPageState extends State<EditPhotoPage> {
               onPressed: () {
                 if (_photo != null) {
                   uploadFile();
-                  updatePhoto(_photoURL!, (e) {
-                    _showErrorDialog(context, 'failed to update photo', e);
-                  });
-
                   Navigator.pop(context);
                 }
               },

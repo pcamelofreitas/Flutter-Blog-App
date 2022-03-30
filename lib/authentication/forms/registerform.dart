@@ -38,7 +38,7 @@ class _RegisterFormState extends State<RegisterForm> {
 
   File? _photo;
   final ImagePicker _picker = ImagePicker();
-  String photoURL = "";
+  String? photoURL;
   //
   Future imgFromCamera() async {
     final pickedFile = await _picker.pickImage(source: ImageSource.camera);
@@ -298,12 +298,12 @@ class _RegisterFormState extends State<RegisterForm> {
               ),
               child: TextButton(
                 onPressed: () {
-                  if (_formKey.currentState!.validate() && _photo != null) {
+                  if (_formKey.currentState!.validate() && photoURL != null) {
                     widget.registerAccount(
                       _emailController.text,
                       _displayNameController.text,
                       _passwordController.text,
-                      photoURL,
+                      photoURL!,
                     );
                   }
                 },

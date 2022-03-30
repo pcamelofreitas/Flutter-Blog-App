@@ -30,58 +30,65 @@ class _EditEmailPageState extends State<EditEmailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: ListView(
+      appBar: AppBar(
+        elevation: 0,
+      ),
+      // backgroundColor: Colors.green,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const SizedBox(
-            height: 50,
-          ),
           Center(
-            child: Form(
-              key: _formKey,
-              child: Container(
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(125),
-                    ),
-                    border: Border.all(width: 1, color: Colors.black),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Colors.black26,
-                        offset: Offset(1, 2.0),
-                        blurRadius: 5,
-                        spreadRadius: 1,
-                      )
-                    ]),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 30, right: 30),
-                  child: TextFormField(
-                    controller: _controller,
-                    keyboardType: TextInputType.text,
-                    decoration: InputDecoration(
-                      labelText: "Novo Email",
-                      labelStyle: TextStyle(
-                        color: Theme.of(context).primaryColor,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Form(
+                key: _formKey,
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(125),
                       ),
+                      border: Border.all(width: 1, color: Colors.black45),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black26,
+                          offset: Offset(1, 2.0),
+                          blurRadius: 5,
+                          spreadRadius: 1,
+                        )
+                      ]),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 30, right: 30),
+                    child: TextFormField(
+                      controller: _controller,
+                      keyboardType: TextInputType.text,
+                      decoration: InputDecoration(
+                        labelText: "Novo Email",
+                        labelStyle: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      style: const TextStyle(
+                        fontSize: 20,
+                      ),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "Seu novo e-mail está vazio";
+                        }
+                        return null;
+                      },
                     ),
-                    style: const TextStyle(
-                      fontSize: 20,
-                    ),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return "Seu novo e-mail está vazio";
-                      }
-                      return null;
-                    },
                   ),
                 ),
               ),
             ),
           ),
-          const SizedBox(height: 100),
+          ElevatedButton(
+            onPressed: () {},
+            child: Text('Alterar Email'),
+          ),
           Center(
             child: Container(
               width: 200,
@@ -157,10 +164,10 @@ class _EditEmailPageState extends State<EditEmailPage> {
           ),
           content: SingleChildScrollView(
             child: ListBody(
-              children: <Widget>[
+              children: const <Widget>[
                 Text(
                   'you email has changed',
-                  style: const TextStyle(fontSize: 18),
+                  style: TextStyle(fontSize: 18),
                 ),
               ],
             ),

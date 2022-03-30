@@ -21,63 +21,80 @@ class ProfilePage extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
       ),
-      backgroundColor: Colors.green,
-      body: ListView(
-        children: [
-          Center(
-            child: Padding(
-              padding: const EdgeInsets.all(20),
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const EditPhotoPage(),
-                    ),
-                  );
-                },
-                child: Container(
-                  height: 250,
-                  width: 250,
-                  margin: const EdgeInsets.all(10),
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Colors.black12,
-                        offset: Offset(1, 1),
-                        blurRadius: 5,
-                        spreadRadius: 2,
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ListView(
+          children: [
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const EditPhotoPage(),
                       ),
-                    ],
-                    border: Border.all(width: 10, color: Colors.black),
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(125),
-                    ),
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: NetworkImage(image),
+                    );
+                  },
+                  child: Container(
+                    height: 250,
+                    width: 250,
+                    margin: const EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black12,
+                          offset: Offset(1, 1),
+                          blurRadius: 5,
+                          spreadRadius: 2,
+                        ),
+                      ],
+                      border: Border.all(width: 5, color: Colors.black),
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(125),
+                      ),
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: NetworkImage(image),
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
-          ),
-          Container(
-            height: 50,
-            padding: EdgeInsets.only(left: 30, right: 30),
-            decoration: BoxDecoration(
-                color: Colors.black38,
-                borderRadius: BorderRadius.circular(100)),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  name,
-                  style: const TextStyle(fontSize: 30, color: Colors.white),
-                ),
-                IconButton(
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const EditPhotoPage(),
+                        ),
+                      );
+                    },
+                    child: const Text('Trocar foto do perfil')),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Container(
+              height: 50,
+              padding: EdgeInsets.only(left: 10, right: 10),
+              decoration: BoxDecoration(
+                  color: Colors.black12,
+                  borderRadius: BorderRadius.circular(5)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    name,
+                    style: const TextStyle(fontSize: 24),
+                  ),
+                  ElevatedButton(
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -86,54 +103,49 @@ class ProfilePage extends StatelessWidget {
                         ),
                       );
                     },
-                    icon: const Icon(
+                    child: const Icon(
                       Icons.edit,
-                      color: Colors.white,
-                    ))
-              ],
+                    ),
+                  )
+                ],
+              ),
             ),
-          ),
-          const SizedBox(height: 30),
-          Container(
-            height: 50,
-            padding: EdgeInsets.only(left: 30, right: 30),
-            decoration: BoxDecoration(
-                color: Colors.black38,
-                borderRadius: BorderRadius.circular(100)),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  email,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    color: Colors.white,
-                  ),
-                ),
-                IconButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const EditEmailPage(),
-                        ),
-                      );
-                    },
-                    icon: const Icon(
-                      Icons.edit,
-                      color: Colors.white,
-                    ))
-              ],
-            ),
-          ),
-          const SizedBox(height: 30),
-          Center(
-            child: Container(
-              width: double.infinity,
+            const SizedBox(height: 10),
+            Container(
+              height: 50,
+              padding: EdgeInsets.only(left: 10, right: 10),
               decoration: BoxDecoration(
-                  color: Colors.black,
-                  borderRadius: BorderRadius.circular(100)),
-              child: TextButton(
+                  color: Colors.black12,
+                  borderRadius: BorderRadius.circular(5)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    email,
+                    style: const TextStyle(
+                      fontSize: 18,
+                      // color: Colors.white,
+                    ),
+                  ),
+                  ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const EditEmailPage(),
+                          ),
+                        );
+                      },
+                      child: const Icon(
+                        Icons.edit,
+                        color: Colors.white,
+                      ))
+                ],
+              ),
+            ),
+            const SizedBox(height: 10),
+            Center(
+              child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -144,12 +156,12 @@ class ProfilePage extends StatelessWidget {
                 },
                 child: const Text(
                   "Mudar Senha",
-                  style: TextStyle(fontSize: 25, color: Colors.white),
+                  style: TextStyle(color: Colors.white),
                 ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

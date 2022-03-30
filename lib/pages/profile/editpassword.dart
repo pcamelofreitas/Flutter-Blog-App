@@ -26,7 +26,9 @@ class _EditPassPageState extends State<EditPassPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        elevation: 0,
+      ),
       backgroundColor: Colors.green,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -72,7 +74,7 @@ class _EditPassPageState extends State<EditPassPage> {
               ),
             ),
           ),
-          SizedBox(height: 100),
+          const SizedBox(height: 100),
           Container(
             width: 200,
             decoration: BoxDecoration(
@@ -88,6 +90,7 @@ class _EditPassPageState extends State<EditPassPage> {
                         e,
                       ),
                     );
+
                     Navigator.pop(context);
                   }
                 },
@@ -113,6 +116,41 @@ class _EditPassPageState extends State<EditPassPage> {
                 Text(
                   '${(e as dynamic).message}',
                   style: const TextStyle(fontSize: 18),
+                ),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text(
+                'OK',
+                style: TextStyle(color: Colors.deepPurple),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showSuccesDialog(BuildContext context, String title) {
+    showDialog<void>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(
+            title,
+            style: const TextStyle(fontSize: 24),
+          ),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: const <Widget>[
+                Text(
+                  'you password has changed',
+                  style: TextStyle(fontSize: 18),
                 ),
               ],
             ),

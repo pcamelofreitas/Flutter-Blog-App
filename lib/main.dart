@@ -170,39 +170,21 @@ class ApplicationState extends ChangeNotifier {
       options: DefaultFirebaseOptions.currentPlatform,
     );
 
-    FirebaseAuth.instance.userChanges().listen((user) {
-      if (user != null) {
-        _loginState = ApplicationLoginState.loggedIn;
+    FirebaseAuth.instance.userChanges().listen(
+      (user) {
+        if (user != null) {
+          _loginState = ApplicationLoginState.loggedIn;
 
-        _userName = FirebaseAuth.instance.currentUser!.displayName;
-        _userEmail = FirebaseAuth.instance.currentUser!.email;
-        _userImage = FirebaseAuth.instance.currentUser!.photoURL;
+          _userName = FirebaseAuth.instance.currentUser!.displayName;
+          _userEmail = FirebaseAuth.instance.currentUser!.email;
+          _userImage = FirebaseAuth.instance.currentUser!.photoURL;
 
-        _homePostSubscription =
-            FirebaseFirestore.instance.collection('home').snapshots().listen(
-          (snapshot) {
-            _homePosts = [];
-            for (final document in snapshot.docs) {
-              _homePosts.add(
-                PostItem(
-                  title: document.data()['title'] as String,
-                  image: document.data()['image'] as String,
-                  content: document.data()['content'] as String,
-                ),
-              );
-            }
-            notifyListeners();
-          },
-        );
-        if (user.emailVerified) {
-          _restrictedPostSubscription = FirebaseFirestore.instance
-              .collection('restrito')
-              .snapshots()
-              .listen(
+          _homePostSubscription =
+              FirebaseFirestore.instance.collection('home').snapshots().listen(
             (snapshot) {
-              _restrictedPosts = [];
+              _homePosts = [];
               for (final document in snapshot.docs) {
-                _restrictedPosts.add(
+                _homePosts.add(
                   PostItem(
                     title: document.data()['title'] as String,
                     image: document.data()['image'] as String,
@@ -213,18 +195,38 @@ class ApplicationState extends ChangeNotifier {
               notifyListeners();
             },
           );
+          if (user.emailVerified) {
+            _restrictedPostSubscription = FirebaseFirestore.instance
+                .collection('restrito')
+                .snapshots()
+                .listen(
+              (snapshot) {
+                _restrictedPosts = [];
+                for (final document in snapshot.docs) {
+                  _restrictedPosts.add(
+                    PostItem(
+                      title: document.data()['title'] as String,
+                      image: document.data()['image'] as String,
+                      content: document.data()['content'] as String,
+                    ),
+                  );
+                }
+                notifyListeners();
+              },
+            );
+          }
+        } else {
+          _loginState = ApplicationLoginState.loggedOut;
+          _homePosts = [];
+          _restrictedPosts = [];
+          _homePostSubscription?.cancel();
+          _restrictedPostSubscription?.cancel();
+          _userName = 'example ';
+          _userEmail = 'example';
+          _userImage = 'example';
         }
-      } else {
-        _loginState = ApplicationLoginState.loggedOut;
-        _homePosts = [];
-        _restrictedPosts = [];
-        _homePostSubscription?.cancel();
-        _restrictedPostSubscription?.cancel();
-        _userName = 'example ';
-        _userEmail = 'example';
-        _userImage = 'example';
-      }
-    });
+      },
+    );
   }
 
   String? _userName = 'example ';
@@ -285,13 +287,15 @@ class ApplicationState extends ChangeNotifier {
     }
   }
 
-  //gogle implementation
-  Future<User?> singInWithGoogle({required BuildContext context}) async {
+  //google implementation
+  Future<void> singInWithGoogle({required BuildContext context}) async {
     FirebaseAuth auth = FirebaseAuth.instance;
-    User? user;
+
     final GoogleSignIn googleSignIn = GoogleSignIn();
+
     final GoogleSignInAccount? googleSignInAccount =
         await googleSignIn.signIn();
+
     if (googleSignInAccount != null) {
       final GoogleSignInAuthentication googleSignInAuthentication =
           await googleSignInAccount.authentication;
@@ -300,10 +304,10 @@ class ApplicationState extends ChangeNotifier {
         accessToken: googleSignInAuthentication.accessToken,
         idToken: googleSignInAuthentication.idToken,
       );
+
       try {
         final UserCredential userCredential =
             await auth.signInWithCredential(credential);
-        user = userCredential.user;
       } on FirebaseAuthException catch (e) {
         if (e.code == 'account-exists-with-different-credential') {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -325,7 +329,6 @@ class ApplicationState extends ChangeNotifier {
           ),
         );
       }
-      return user;
     }
   }
 
