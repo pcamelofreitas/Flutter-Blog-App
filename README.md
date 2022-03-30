@@ -1,6 +1,5 @@
-# blog_app_2
-
-A new Flutter project.
+# Flutter Blog App
+Aplicativo feito em flutter com api em firebase.
 
 ## Getting Started
 
