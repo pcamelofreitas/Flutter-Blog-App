@@ -87,7 +87,7 @@ class _EditEmailPageState extends State<EditEmailPage> {
           ),
           ElevatedButton(
             onPressed: () {},
-            child: Text('Alterar Email'),
+            child: const Text('Alterar Email'),
           ),
           Center(
             child: Container(
@@ -108,8 +108,8 @@ class _EditEmailPageState extends State<EditEmailPage> {
                     );
                   }
                 },
-                icon: Icon(Icons.upload),
-                label: Text('Alterar email'),
+                icon: const Icon(Icons.upload),
+                label: const Text('Alterar email'),
               ),
             ),
           ),
@@ -166,7 +166,7 @@ class _EditEmailPageState extends State<EditEmailPage> {
             child: ListBody(
               children: const <Widget>[
                 Text(
-                  'you email has changed',
+                  'Seu email foi alterado',
                   style: TextStyle(fontSize: 18),
                 ),
               ],

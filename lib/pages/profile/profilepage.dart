@@ -83,7 +83,7 @@ class ProfilePage extends StatelessWidget {
             const SizedBox(height: 10),
             Container(
               height: 50,
-              padding: EdgeInsets.only(left: 10, right: 10),
+              padding: const EdgeInsets.only(left: 10, right: 10),
               decoration: BoxDecoration(
                   color: Colors.black12,
                   borderRadius: BorderRadius.circular(5)),
@@ -113,7 +113,7 @@ class ProfilePage extends StatelessWidget {
             const SizedBox(height: 10),
             Container(
               height: 50,
-              padding: EdgeInsets.only(left: 10, right: 10),
+              padding: const EdgeInsets.only(left: 10, right: 10),
               decoration: BoxDecoration(
                   color: Colors.black12,
                   borderRadius: BorderRadius.circular(5)),

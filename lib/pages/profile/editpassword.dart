@@ -82,20 +82,13 @@ class _EditPassPageState extends State<EditPassPage> {
             child: TextButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    updatePassword(
-                      _controller.text,
-                      (e) => _showErrorDialog(
-                        context,
-                        'error message',
-                        e,
-                      ),
-                    );
-
+                    updatePassword(_controller.text,
+                        (e) => _showErrorDialog(context, 'error message', e));
                     Navigator.pop(context);
                   }
                 },
                 child: const Text('Enviar')),
-          )
+          ),
         ],
       ),
     );
@@ -136,38 +129,38 @@ class _EditPassPageState extends State<EditPassPage> {
     );
   }
 
-  void _showSuccesDialog(BuildContext context, String title) {
-    showDialog<void>(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text(
-            title,
-            style: const TextStyle(fontSize: 24),
-          ),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: const <Widget>[
-                Text(
-                  'you password has changed',
-                  style: TextStyle(fontSize: 18),
-                ),
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text(
-                'OK',
-                style: TextStyle(color: Colors.deepPurple),
-              ),
-            ),
-          ],
-        );
-      },
-    );
-  }
+  // void _showSuccesDialog(BuildContext context, String title) {
+  //   showDialog<void>(
+  //     context: context,
+  //     builder: (context) {
+  //       return AlertDialog(
+  //         title: Text(
+  //           title,
+  //           style: const TextStyle(fontSize: 24),
+  //         ),
+  //         content: SingleChildScrollView(
+  //           child: ListBody(
+  //             children: const <Widget>[
+  //               Text(
+  //                 'you password has changed',
+  //                 style: TextStyle(fontSize: 18),
+  //               ),
+  //             ],
+  //           ),
+  //         ),
+  //         actions: <Widget>[
+  //           TextButton(
+  //             onPressed: () {
+  //               Navigator.of(context).pop();
+  //             },
+  //             child: const Text(
+  //               'OK',
+  //               style: TextStyle(color: Colors.deepPurple),
+  //             ),
+  //           ),
+  //         ],
+  //       );
+  //     },
+  //   );
+  // }
 }

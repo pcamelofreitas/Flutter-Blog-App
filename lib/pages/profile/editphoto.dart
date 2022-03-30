@@ -28,8 +28,6 @@ class _EditPhotoPageState extends State<EditPhotoPage> {
     setState(() {
       if (pickedFile != null) {
         _photo = File(pickedFile.path);
-      } else {
-        print("error image from camera");
       }
     });
   }

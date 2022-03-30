@@ -27,7 +27,6 @@ class RegisterForm extends StatefulWidget {
 }
 
 class _RegisterFormState extends State<RegisterForm> {
-  //definir estados e controladores
   final _formKey = GlobalKey<FormState>(debugLabel: "_RegisterFormState");
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -39,7 +38,7 @@ class _RegisterFormState extends State<RegisterForm> {
   File? _photo;
   final ImagePicker _picker = ImagePicker();
   String? photoURL;
-  //
+
   Future imgFromCamera() async {
     final pickedFile = await _picker.pickImage(source: ImageSource.camera);
     setState(
@@ -47,8 +46,6 @@ class _RegisterFormState extends State<RegisterForm> {
         if (pickedFile != null) {
           _photo = File(pickedFile.path);
           uploadFile();
-        } else {
-          print("error image from camera");
         }
       },
     );
@@ -75,7 +72,6 @@ class _RegisterFormState extends State<RegisterForm> {
     _emailController.text = widget.email;
   }
 
-  //renderizar
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -216,9 +212,7 @@ class _RegisterFormState extends State<RegisterForm> {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 10,
-            ),
+            const SizedBox(height: 10),
             Container(
               decoration: BoxDecoration(
                   color: Colors.white,
@@ -253,7 +247,7 @@ class _RegisterFormState extends State<RegisterForm> {
                   controller: _passwordController,
                   validator: (value) {
                     if (value!.isEmpty) {
-                      return 'enter your password';
+                      return 'Digite seu password';
                     }
                     return null;
                   },
@@ -323,42 +317,42 @@ class _RegisterFormState extends State<RegisterForm> {
     );
   }
 
-  void _showErrorDialog(
-    BuildContext context,
-  ) {
-    showDialog<void>(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text(
-            'error',
-            style: const TextStyle(fontSize: 24),
-          ),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                Text(
-                  'error on upload image',
-                  style: const TextStyle(fontSize: 18),
-                ),
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text(
-                'OK',
-                style: TextStyle(color: Colors.deepPurple),
-              ),
-            ),
-          ],
-        );
-      },
-    );
-  }
+  // void _showErrorDialog(
+  //   BuildContext context,
+  // ) {
+  //   showDialog<void>(
+  //     context: context,
+  //     builder: (context) {
+  //       return AlertDialog(
+  //         title: Text(
+  //           'error',
+  //           style: const TextStyle(fontSize: 24),
+  //         ),
+  //         content: SingleChildScrollView(
+  //           child: ListBody(
+  //             children: <Widget>[
+  //               Text(
+  //                 'error on upload image',
+  //                 style: const TextStyle(fontSize: 18),
+  //               ),
+  //             ],
+  //           ),
+  //         ),
+  //         actions: <Widget>[
+  //           TextButton(
+  //             onPressed: () {
+  //               Navigator.of(context).pop();
+  //             },
+  //             child: const Text(
+  //               'OK',
+  //               style: TextStyle(color: Colors.deepPurple),
+  //             ),
+  //           ),
+  //         ],
+  //       );
+  //     },
+  //   );
+  // }
 
   void _showPicker(context) {
     showModalBottomSheet(

@@ -95,8 +95,8 @@ class _EditNamePageState extends State<EditNamePage> {
                     Navigator.pop(context);
                   }
                 },
-                icon: Icon(Icons.upload),
-                label: Text('Alterar Nome'),
+                icon: const Icon(Icons.upload),
+                label: const Text('Alterar Nome'),
               ),
             ),
           ),

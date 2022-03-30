@@ -1,7 +1,6 @@
 import 'package:blog_app_2/main.dart';
 import 'package:blog_app_2/models/logo.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 
 class EmailForm extends StatefulWidget {
@@ -36,7 +35,7 @@ class _EmailFormState extends State<EmailForm> {
                   color: Colors.white,
                   border: Border.all(
                     width: 1.0,
-                    color: Colors.black,
+                    color: Colors.black54,
                   ),
                   boxShadow: const [
                     BoxShadow(
@@ -68,7 +67,7 @@ class _EmailFormState extends State<EmailForm> {
                     ),
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Enter your email address to continue';
+                        return 'Entre com seu endereço de email para continuar';
                       }
                       return null;
                     },
@@ -82,7 +81,7 @@ class _EmailFormState extends State<EmailForm> {
                     color: Colors.white,
                     border: Border.all(
                       width: 1.0,
-                      color: Colors.black,
+                      color: Colors.black54,
                     ),
                     boxShadow: const [
                       BoxShadow(
@@ -124,7 +123,7 @@ class _EmailFormState extends State<EmailForm> {
         ),
         Container(
           height: 60,
-          width: double.infinity,
+          width: 250,
           decoration: BoxDecoration(
             color: Colors.white,
             boxShadow: const [
@@ -137,7 +136,7 @@ class _EmailFormState extends State<EmailForm> {
             ],
             border: Border.all(
               width: 1.0,
-              color: Colors.black,
+              color: Colors.black54,
             ),
             borderRadius: const BorderRadius.all(
               Radius.circular(5),

@@ -29,6 +29,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.green,
@@ -64,7 +65,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text(
           'BlogApp',
-          style: const TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.white),
         ),
       ),
       drawer: Drawer(
@@ -91,8 +92,8 @@ class HomePage extends StatelessWidget {
               ),
               Consumer<ApplicationState>(
                 builder: (context, appState, _) => ListTile(
-                  leading: Icon(Icons.person),
-                  title: Text('Meu Perfil'),
+                  leading: const Icon(Icons.person),
+                  title: const Text('Meu Perfil'),
                   onTap: () {
                     Navigator.push(
                       context,
@@ -139,7 +140,7 @@ class HomePage extends StatelessWidget {
             builder: (context, appState, _) =>
                 PostList(posts: appState.homePosts),
           ),
-          RestrictedPage(),
+          const RestrictedPage(),
         ],
       ),
       bottomNavigationBar: TabBar(
@@ -336,10 +337,6 @@ class ApplicationState extends ChangeNotifier {
     _loginState = ApplicationLoginState.emailAddress;
     notifyListeners();
   }
-  // void updatePhoto()  {
-  //   FirebaseAuth.instance.currentUser!.updatePhotoURL(_photoURL);
-  // notifyListners();
-  // }
 
   Future<void> registerAccount(
     String email,
@@ -369,7 +366,7 @@ SnackBar customSnackBar({required String content}) {
     backgroundColor: Colors.black,
     content: Text(
       content,
-      style: TextStyle(color: Colors.redAccent, letterSpacing: 0.5),
+      style: const TextStyle(color: Colors.redAccent, letterSpacing: 0.5),
     ),
   );
 }

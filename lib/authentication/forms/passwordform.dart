@@ -28,8 +28,8 @@ class _PasswordFormState extends State<PasswordForm> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          AppLogo(),
-          SizedBox(height: 30),
+          const AppLogo(),
+          const SizedBox(height: 30),
           Container(
             decoration: const BoxDecoration(
               color: Colors.white,

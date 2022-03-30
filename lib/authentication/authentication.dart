@@ -56,10 +56,10 @@ class Authentication extends StatelessWidget {
             Center(
               child: Container(
                 height: 50,
-                width: double.infinity,
+                width: 200,
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  border: Border.all(width: 1, color: Colors.black),
+                  border: Border.all(width: 1, color: Colors.black54),
                   boxShadow: const [
                     BoxShadow(
                       color: Colors.black38,
