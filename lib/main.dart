@@ -307,8 +307,8 @@ class ApplicationState extends ChangeNotifier {
       );
 
       try {
-        final UserCredential userCredential =
-            await auth.signInWithCredential(credential);
+        // final UserCredential userCredential =
+        await auth.signInWithCredential(credential);
       } on FirebaseAuthException catch (e) {
         if (e.code == 'account-exists-with-different-credential') {
           ScaffoldMessenger.of(context).showSnackBar(

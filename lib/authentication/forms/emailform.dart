@@ -5,8 +5,9 @@ import 'package:provider/provider.dart';
 
 class EmailForm extends StatefulWidget {
   const EmailForm({
+    Key? key,
     required this.callback,
-  });
+  }) : super(key: key);
   final void Function(String email) callback;
 
   @override

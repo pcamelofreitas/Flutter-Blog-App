@@ -7,11 +7,10 @@ import 'package:blog_app_2/models/logo.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-// import 'package:tentativa_1/main.dart';
-
 class Authentication extends StatelessWidget {
   // prop constructor
   const Authentication({
+    Key? key,
     required this.loginState,
     required this.email,
     required this.startLoginFlow,
@@ -20,7 +19,8 @@ class Authentication extends StatelessWidget {
     required this.cancelRegistration,
     required this.registerAccount,
     required this.signOut,
-  });
+  }) : super(key: key);
+
   //prop handlers
   final ApplicationLoginState loginState;
   final String? email;
@@ -121,7 +121,6 @@ class Authentication extends StatelessWidget {
           },
         );
       case ApplicationLoginState.loggedIn:
-        //quando logado vai renderizar tab com as pages
         return DefaultTabController(
           length: 1,
           child: Consumer<ApplicationState>(

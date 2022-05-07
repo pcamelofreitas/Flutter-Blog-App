@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 class PasswordForm extends StatefulWidget {
   final String email;
   final void Function(String email, String password) login;
-  const PasswordForm({required this.email, required this.login});
+  const PasswordForm({Key? key, required this.email, required this.login})
+      : super(key: key);
   @override
   State<PasswordForm> createState() => _PasswordFormState();
 }

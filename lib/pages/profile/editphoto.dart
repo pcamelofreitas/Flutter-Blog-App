@@ -20,11 +20,14 @@ class _EditPhotoPageState extends State<EditPhotoPage> {
   File? _photo;
   final ImagePicker _picker = ImagePicker();
 
-  String? _photoURL = FirebaseAuth.instance.currentUser!.photoURL;
-  String? get photoUrl => _photoURL;
+  // String? _photoURL = FirebaseAuth.instance.currentUser!.photoURL;
+  // String? get photoUrl => _photoURL;
 
   Future imgFromCamera() async {
-    final pickedFile = await _picker.pickImage(source: ImageSource.camera);
+    final pickedFile = await _picker.pickImage(
+      source: ImageSource.camera,
+      preferredCameraDevice: CameraDevice.front,
+    );
     setState(() {
       if (pickedFile != null) {
         _photo = File(pickedFile.path);
@@ -71,52 +74,46 @@ class _EditPhotoPageState extends State<EditPhotoPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(
-            child: Container(
-              child: GestureDetector(
-                onTap: () {
-                  _showPicker(context);
-                },
-                child: CircleAvatar(
-                  radius: 100,
-                  backgroundColor: Colors.green,
-                  child: _photo != null
-                      ? ClipRRect(
-                          borderRadius: BorderRadius.circular(100),
-                          child: Image.file(
-                            _photo!,
+            child: GestureDetector(
+              onTap: () {
+                _showPicker(context);
+              },
+              child: CircleAvatar(
+                radius: 100,
+                backgroundColor: Colors.green,
+                child: _photo != null
+                    ? ClipRRect(
+                        borderRadius: BorderRadius.circular(100),
+                        child: Image.file(
+                          _photo!,
+                          width: 200,
+                          height: 200,
+                          fit: BoxFit.cover,
+                        ),
+                      )
+                    : Column(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              color: Colors.grey[200],
+                              borderRadius: BorderRadius.circular(100),
+                            ),
                             width: 200,
                             height: 200,
-                            fit: BoxFit.cover,
-                          ),
-                        )
-                      : Column(
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.grey[200],
-                                  borderRadius: BorderRadius.circular(100)),
-                              width: 200,
-                              height: 200,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.camera_alt,
-                                    color: Colors.grey[800],
-                                    size: 100,
-                                  ),
-                                  Text(
-                                    "upload new photo",
-                                    style: TextStyle(
-                                      color: Colors.grey[800],
-                                    ),
-                                  ),
-                                ],
-                              ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(Icons.camera_alt,
+                                    color: Colors.grey[800], size: 100),
+                                Text(
+                                  "upload new photo",
+                                  style: TextStyle(color: Colors.grey[800]),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                ),
+                          ),
+                        ],
+                      ),
               ),
             ),
           ),
@@ -173,38 +170,38 @@ class _EditPhotoPageState extends State<EditPhotoPage> {
     );
   }
 
-  void _showErrorDialog(BuildContext context, String title, Exception e) {
-    showDialog<void>(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text(
-            title,
-            style: const TextStyle(fontSize: 24),
-          ),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                Text(
-                  '${(e as dynamic).message}',
-                  style: const TextStyle(fontSize: 18),
-                ),
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text(
-                'OK',
-                style: TextStyle(color: Colors.deepPurple),
-              ),
-            ),
-          ],
-        );
-      },
-    );
-  }
+  // void _showErrorDialog(BuildContext context, String title, Exception e) {
+  //   showDialog<void>(
+  //     context: context,
+  //     builder: (context) {
+  //       return AlertDialog(
+  //         title: Text(
+  //           title,
+  //           style: const TextStyle(fontSize: 24),
+  //         ),
+  //         content: SingleChildScrollView(
+  //           child: ListBody(
+  //             children: <Widget>[
+  //               Text(
+  //                 '${(e as dynamic).message}',
+  //                 style: const TextStyle(fontSize: 18),
+  //               ),
+  //             ],
+  //           ),
+  //         ),
+  //         actions: <Widget>[
+  //           TextButton(
+  //             onPressed: () {
+  //               Navigator.of(context).pop();
+  //             },
+  //             child: const Text(
+  //               'OK',
+  //               style: TextStyle(color: Colors.deepPurple),
+  //             ),
+  //           ),
+  //         ],
+  //       );
+  //     },
+  //   );
+  // }
 }

@@ -17,10 +17,11 @@ class RegisterForm extends StatefulWidget {
   final void Function() cancel;
 
   const RegisterForm({
+    Key? key,
     required this.email,
     required this.cancel,
     required this.registerAccount,
-  });
+  }) : super(key: key);
 
   @override
   State<RegisterForm> createState() => _RegisterFormState();
@@ -40,7 +41,8 @@ class _RegisterFormState extends State<RegisterForm> {
   String? photoURL;
 
   Future imgFromCamera() async {
-    final pickedFile = await _picker.pickImage(source: ImageSource.camera);
+    final pickedFile = await _picker.pickImage(
+        source: ImageSource.camera, preferredCameraDevice: CameraDevice.front);
     setState(
       () {
         if (pickedFile != null) {
